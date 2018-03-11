@@ -1,5 +1,5 @@
 import * as puppeteer from "puppeteer";
-import creds from "../config/creds";
+import * as creds from "../config/creds";
 import * as fse from "fs-extra";
 import * as path from "path";
 
@@ -32,9 +32,9 @@ async function writeFile(name: string, content: string) {
 		});
 
 		await page.click(USER_SELECTOR);
-		await page.keyboard.type(creds.mail);
+		await page.keyboard.type(creds.coursera.mail);
 		await page.click(PASSWORD_SELECTOR);
-		await page.keyboard.type(creds.password);
+		await page.keyboard.type(creds.coursera.password);
 
 		await page.click(BUTTON_SELECTOR);
 
