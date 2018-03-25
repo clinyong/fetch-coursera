@@ -18,7 +18,7 @@ async function writeFile(name: string, content: string) {
 
 (async () => {
 	const browser = await puppeteer.launch({
-		headless: true,
+		headless: false,
 		args: [
 			"--proxy-server=127.0.0.1:8124" // Or whatever the address is
 		]
@@ -62,9 +62,10 @@ async function writeFile(name: string, content: string) {
 	}
 
 	async function getCourseDetail(course) {
-		const videoIcon = await course.$(".cif-play");
+		const alreadyPlayIcon = await course.$(".cif-play");
+		const nonePlayIcon = await course.$(".cif-item-video");
 
-		if (videoIcon) {
+		if (alreadyPlayIcon || nonePlayIcon) {
 			const titleItem = await course.$(
 				".item-text-container > .item-name >span"
 			);
